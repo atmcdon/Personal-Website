@@ -51,6 +51,7 @@ header {
 
 nav {
     /* container for the ul */
+    
 }
 
 #main-nav-list { /* Changed from nav ul for specificity */
