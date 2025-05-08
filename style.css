@@ -474,26 +474,59 @@ nav { /* The <nav> element itself */
 }
 
 /* Skills Section Bubbles */
-#skills ul {
+.skills-list { /* Changed selector */
     list-style: none; /* Remove default bullets */
     padding: 0; /* Remove default padding */
     text-align: center; /* Center the bubbles container */
     margin-top: 20px;
 }
 
-#skills ul li {
+.skills-list li { /* Changed selector */
     display: inline-block; /* Arrange skills in a line, wrapping as needed */
     background-color: #007bff; /* Bubble background color - using theme blue */
     color: #ffffff; /* Bubble text color */
-    padding: 10px 20px; /* Padding inside the bubble */
+    padding: 8px 15px; /* Adjusted padding */
     margin: 8px; /* Spacing between bubbles */
     border-radius: 25px; /* Rounded corners to make it bubble/pill-shaped */
     font-size: 0.95em;
     font-weight: 500;
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    cursor: pointer; /* Changed to pointer for click interaction */
+    transition: all 0.3s ease-in-out; /* Smooth transition for size change */
+    max-width: 180px; /* Initial max-width for the category */
+    overflow: hidden;
+    vertical-align: top; /* Align bubbles nicely if they wrap */
+    text-align: left; /* Align text left within bubble */
+    white-space: nowrap; /* Keep category on one line initially */
 }
 
-#skills ul li:hover {
-    background-color: #0056b3; /* Darker on hover */
+.skill-category {
+    font-weight: bold; /* Make category stand out */
+}
+
+.skill-description {
+    display: none; /* Hide description initially */
+    font-weight: normal;
+    margin-left: 5px; /* Space between category and description */
+    font-size: 0.9em; /* Slightly smaller description */
+    color: #e0e0e0; /* Slightly dimmer color */
+    /* display: block; <<<< REMOVED CONFLICTING RULE */
+    margin-top: 5px; /* Space above description */
+    white-space: normal; /* Allow description to wrap */
+}
+
+/* Add back hover effects for color change and lift, but not expansion */
+.skills-list li:hover {
+    background-color: #006adc; /* Slightly different hover color */
     transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.skills-list li.skill-open { /* Styles for when skill is clicked open */
+    background-color: #0056b3; /* Use the darker color when open */
+    max-width: 400px; /* Allow bubble to expand */
+    white-space: normal; /* Allow category to wrap if needed when expanded */
+    transform: translateY(-2px); /* Optional: keep lift effect when open */
+}
+
+.skills-list li.skill-open .skill-description {
+    display: block; /* Show description when .skill-open class is present */
 }

@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let isValid = true;
             let errorMessages = [];
 
-            // Clear previous custom error messages if any
             this.querySelectorAll('.error-message').forEach(el => el.remove());
 
             const nameField = this.querySelector('#name');
@@ -51,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 isValid = false;
                 errorMessages.push("Name is required.");
                 displayError(nameField, "Name is required.");
+            } else {
+                 nameField.value = nameField.value.trim();
             }
 
             if (!emailField.value.trim()) {
@@ -63,50 +64,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayError(emailField, "Please enter a valid email address.");
             }
             
-            // Basic message check (not empty)
-            // For "sanitization" on client-side, we can trim whitespace.
-            // True sanitization (e.g. against XSS) is a server-side responsibility.
             if (!messageField.value.trim()) {
                 isValid = false;
                 errorMessages.push("Message is required.");
                 displayError(messageField, "Message is required.");
             } else {
-                 // Example of simple "sanitization": trim whitespace.
                  messageField.value = messageField.value.trim();
             }
             
-            // Sanitize name and subject by trimming
-            if (nameField.value) nameField.value = nameField.value.trim();
             const subjectField = this.querySelector('#subject');
             if (subjectField.value) subjectField.value = subjectField.value.trim();
 
-
             if (!isValid) {
-                event.preventDefault(); // Prevent form submission
-                // Optionally, alert all errors or display them near fields (as done by displayError)
-                // alert("Please correct the following errors:\n" + errorMessages.join("\n"));
+                event.preventDefault(); 
             } else {
-                // If using mailto, the browser handles it.
-                // If using a service/backend, this is where you'd typically make an AJAX call.
-                // For mailto, it's good practice to inform the user.
                 alert("Your email client will now open to send the message. Thank you!");
             }
         });
     }
 
+    // Skill bubble click toggle
+    const skillItems = document.querySelectorAll('.skills-list li');
+    skillItems.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('skill-open');
+            // After toggling one, update the Expand/Collapse All button text
+            updateToggleSkillsButtonText(); 
+        });
+    });
+
+    // Toggle All Skills Button
+    const toggleSkillsBtn = document.querySelector('#toggle-skills-btn');
+    if (toggleSkillsBtn) {
+        toggleSkillsBtn.addEventListener('click', () => {
+            // Check if *any* skill is currently closed (doesn't have skill-open)
+            const isAnyClosed = Array.from(skillItems).some(item => !item.classList.contains('skill-open'));
+            
+            if (isAnyClosed) {
+                // If any are closed, open all
+                skillItems.forEach(item => item.classList.add('skill-open'));
+                toggleSkillsBtn.textContent = 'Collapse All';
+            } else {
+                // If all are open, close all
+                skillItems.forEach(item => item.classList.remove('skill-open'));
+                toggleSkillsBtn.textContent = 'Expand All';
+            }
+        });
+    }
+
+    // Function to update the toggle button text based on current state
+    function updateToggleSkillsButtonText() {
+        if (!toggleSkillsBtn) return; // Exit if button doesn't exist
+        const isAnyClosed = Array.from(skillItems).some(item => !item.classList.contains('skill-open'));
+        if (isAnyClosed) {
+            toggleSkillsBtn.textContent = 'Expand All';
+        } else {
+            toggleSkillsBtn.textContent = 'Collapse All';
+        }
+    }
+
+    // Initial check for button text when page loads
+    updateToggleSkillsButtonText();
+
+
+    // Helper functions for form validation
     function isValidEmail(email) {
-        // Basic email validation regex
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
     function displayError(fieldElement, message) {
-        // Remove existing error message for this field
         const existingError = fieldElement.parentElement.querySelector('.error-message');
         if (existingError) {
             existingError.remove();
         }
-
         const errorElement = document.createElement('p');
         errorElement.className = 'error-message';
         errorElement.style.color = 'red';
