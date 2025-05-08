@@ -531,3 +531,19 @@ nav { /* The <nav> element itself */
 .skills-list li.skill-open .skill-description {
     display: block; /* Show description when .skill-open class is present */
 }
+
+/* Footer Styles */
+footer {
+    background-color: #1a1a1a; /* Match header background */
+    color: #aaaaaa; /* Lighter gray for footer text */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; /* Space above the footer */
+    font-size: 0.9em;
+    border-top: 1px solid #333; /* Separator line */
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
