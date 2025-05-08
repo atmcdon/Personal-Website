@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew McDonald | IT Professional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Andrew McDonald</div>
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <nav>
+            <ul id="main-nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact" class="button-contact">Contact Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-image-container">
+                <!-- Placeholder for the image of Vishal Khole -->
+                <img src="placeholder-profile.jpg"  alt="Andrew McDonald">
+            </div>
+            <div class="hero-text-container">
+                <p class="intro-text">I am an</p>
+                <h1>IT Professional</h1>
+                <p class="name-highlight">Andrew McDonald</p>
+                <p class="description">
+                    A data-driven professional with 3 years of experience in marketing
+                    analytics, skilled in transforming complex data into actionable insights.
+                    Expertise in optimizing performance marketing and social media
+                    strategies to enhance ROI and drive business growth.
+                </p>
+                <a href="Resume_Andrew_McDonald.pdf" class="button-cv" target="_blank" rel="noopener noreferrer" download="Andrew_McDonald_Resume.pdf">Download CV</a>
+            </div>
+        </section>
+
+        <section id="about" class="content-section">
+            <h2>About Me</h2>
+            <p>This is the About Me section. You can write a short biography here, highlighting your experiences, passions, and what drives you. Let people know a bit more about who you are beyond your professional skills.</p>
+        </section>
+
+        <section id="skills" class="content-section">
+            <h2>Skills</h2>
+            <p>Showcase your key skills here. You can list them, perhaps categorize them (e.g., technical skills, soft skills), and briefly describe your proficiency or experience with each.</p>
+            <ul>
+                <li>Skill 1: Description</li>
+                <li>Skill 2: Description</li>
+                <li>Skill 3: Description</li>
+                <li>Skill 4: Description</li>
+            </ul>
+        </section>
+
+        <section id="portfolio" class="content-section">
+            <h2>Portfolio</h2>
+            <p>This is where you can display your projects. For each project, consider including a title, a brief description, technologies used, and a link to the live project or its repository. Click on a project to see more details.</p>
+            <div class="portfolio-grid">
+                <div class="project-item">
+                    <div class="project-tile-content">
+                        <img src="placeholder-project.jpg" alt="Project 1 Thumbnail">
+                        <h3>Project Title 1</h3>
+                        <p class="project-summary">A short summary of Project 1. Click to expand.</p>
+                    </div>
+                    <div class="project-expanded-content">
+                        <h4>Project Title 1 - Full Details</h4>
+                        <p>More detailed information about Project 1. This could include challenges, solutions, technologies used, and your role in the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a href="#" target="_blank">View Live Project</a> | <a href="#" target="_blank">View Source Code</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-tile-content">
+                        <img src="placeholder-project.jpg" alt="Project 2 Thumbnail">
+                        <h3>Project Title 2</h3>
+                        <p class="project-summary">A short summary of Project 2. Click to expand.</p>
+                    </div>
+                    <div class="project-expanded-content">
+                        <h4>Project Title 2 - Full Details</h4>
+                        <p>More detailed information about Project 2. This could include challenges, solutions, technologies used, and your role in the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a href="#" target="_blank">View Live Project</a> | <a href="#" target="_blank">View Source Code</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-tile-content">
+                        <img src="placeholder-project.jpg" alt="Project 3 Thumbnail">
+                        <h3>Project Title 3</h3>
+                        <p class="project-summary">A short summary of Project 3. Click to expand.</p>
+                    </div>
+                    <div class="project-expanded-content">
+                        <h4>Project Title 3 - Full Details</h4>
+                        <p>More detailed information about Project 3. This could include challenges, solutions, technologies used, and your role in the project. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a href="#" target="_blank">View Live Project</a> | <a href="#" target="_blank">View Source Code</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="content-section">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out! Fill in the form below or connect with me on social media.</p>
+            
+            <!-- For a more robust solution that doesn't expose your email and handles submissions server-side,
+                 consider services like Formspree, Netlify Forms, or a custom backend.
+                 The mailto: action relies on the user's local email client. -->
+            <form id="contact-form" action="mailto:your.email@example.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="button-cv">Send Message</button>
+            </form>
+
+            <div class="social-links">
+                <p>Connect with me:</p>
+                <a href="YOUR_LINKEDIN_URL_HERE" target="_blank" aria-label="LinkedIn Profile">
+                    <svg class="social-icon" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="YOUR_GITHUB_URL_HERE" target="_blank" aria-label="GitHub Profile">
+                    <svg class="social-icon" viewBox="0 0 16 16" width="32" height="32" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
