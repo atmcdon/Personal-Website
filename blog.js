@@ -313,6 +313,32 @@ function initializeTypingEffect() {
     setTimeout(typeWriter, 1500);
 }
 
+let allLinksExpanded = false;
+
+function toggleLinkCategory(categoryName) {
+    const dropdown = document.getElementById(`${categoryName}-content`).parentElement;
+    dropdown.classList.toggle('expanded');
+}
+
+function toggleAllLinkCategories() {
+    const button = document.getElementById('expand-all-links');
+    const dropdowns = document.querySelectorAll('.link-dropdown');
+    
+    allLinksExpanded = !allLinksExpanded;
+    
+    if (allLinksExpanded) {
+        dropdowns.forEach(dropdown => dropdown.classList.add('expanded'));
+        button.textContent = '📁 Collapse All Categories';
+        button.style.background = 'linear-gradient(45deg, #dc3545, #c82333)';
+    } else {
+        dropdowns.forEach(dropdown => dropdown.classList.remove('expanded'));
+        button.textContent = '📋 Expand All Categories';
+        button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+    }
+}
+
 // Make functions available globally
 window.showBlogList = showBlogList;
 window.toggleSection = toggleSection;
+window.toggleLinkCategory = toggleLinkCategory;
+window.toggleAllLinkCategories = toggleAllLinkCategories;

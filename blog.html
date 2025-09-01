@@ -78,8 +78,13 @@
         }
         
         .menu-section.expanded .section-content {
-            max-height: 400px;
+            max-height: 800px;
             padding: 20px 25px;
+        }
+        
+        #links-section.expanded .section-content {
+            max-height: none;
+            overflow: visible;
         }
         
         .timeline-item {
@@ -160,6 +165,111 @@
         
         .category-item.all-posts.active {
             background-color: #28a745;
+        }
+        
+        .expand-all-container {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .expand-all-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .expand-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .links-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .link-dropdown {
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #333;
+        }
+        
+        .link-dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background-color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+        
+        .link-dropdown-header:hover {
+            background-color: #3a3a3a;
+        }
+        
+        .link-dropdown-header span:first-child {
+            color: #00aaff;
+            font-weight: 500;
+        }
+        
+        .dropdown-arrow {
+            color: #00aaff;
+            transition: transform 0.3s ease;
+        }
+        
+        .link-dropdown.expanded .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .link-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            background-color: #2a2a2a;
+        }
+        
+        .link-dropdown.expanded .link-dropdown-content {
+            max-height: 300px;
+        }
+        
+        .resource-links {
+            list-style: none;
+            padding: 15px;
+            margin: 0;
+        }
+        
+        .resource-links li {
+            margin-bottom: 8px;
+        }
+        
+        .resource-links a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border-left: 3px solid transparent;
+        }
+        
+        .resource-links a:hover {
+            color: #00aaff;
+            background-color: rgba(0, 123, 255, 0.1);
+            border-left-color: #00aaff;
+            padding-left: 14px;
         }
         
         .blog-header {
@@ -467,6 +577,12 @@
             
             .menu-section.expanded .section-content {
                 padding: 15px 20px;
+                max-height: 600px;
+            }
+            
+            #links-section.expanded .section-content {
+                max-height: none;
+                overflow: visible;
             }
             
             .timeline-item {
@@ -527,23 +643,137 @@
                     <div class="menu-sections">
                         <div class="menu-section" id="timeline-section">
                             <div class="section-header" onclick="toggleSection('timeline')">
-                                <span class="section-icon">📅</span>
-                                <h3>Timeline</h3>
+                                <span class="section-icon">📚</span>
+                                <h3>Browse by Date</h3>
                                 <span class="section-arrow" id="timeline-arrow">▼</span>
                             </div>
                             <div class="section-content" id="timeline-content">
-                                <div class="timeline-loading">Loading timeline...</div>
+                                <div class="timeline-loading">Loading posts...</div>
                             </div>
                         </div>
                         
                         <div class="menu-section" id="categories-section">
                             <div class="section-header" onclick="toggleSection('categories')">
-                                <span class="section-icon">🏷️</span>
-                                <h3>Categories</h3>
+                                <span class="section-icon">🎯</span>
+                                <h3>Filter by Topic</h3>
                                 <span class="section-arrow" id="categories-arrow">▼</span>
                             </div>
                             <div class="section-content" id="category-content">
-                                <div class="category-loading">Loading categories...</div>
+                                <div class="category-loading">Loading topics...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-section" id="links-section">
+                            <div class="section-header" onclick="toggleSection('links')">
+                                <span class="section-icon">🔗</span>
+                                <h3>Learning Resources</h3>
+                                <span class="section-arrow" id="links-arrow">▼</span>
+                            </div>
+                            <div class="section-content" id="links-content">
+                                <div class="expand-all-container">
+                                    <button class="expand-all-btn" id="expand-all-links" onclick="toggleAllLinkCategories()">
+                                        📋 Expand All Categories
+                                    </button>
+                                </div>
+                                
+                                <div class="links-accordion">
+                                    <div class="link-dropdown">
+                                        <div class="link-dropdown-header" onclick="toggleLinkCategory('cybersecurity')">
+                                            <span>🔒 Cybersecurity</span>
+                                            <span class="dropdown-arrow" id="cybersecurity-arrow">▼</span>
+                                        </div>
+                                        <div class="link-dropdown-content" id="cybersecurity-content">
+                                            <ul class="resource-links">
+                                                <li><a href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK Framework</a></li>
+                                                <li><a href="https://www.nist.gov/cyberframework" target="_blank">NIST Cybersecurity Framework</a></li>
+                                                <li><a href="https://www.sans.org/blog/" target="_blank">SANS Institute Blog</a></li>
+                                                <li><a href="https://krebsonsecurity.com/" target="_blank">Krebs on Security</a></li>
+                                                <li><a href="https://www.darkreading.com/" target="_blank">Dark Reading</a></li>
+                                                <li><a href="https://owasp.org/" target="_blank">OWASP Foundation</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="link-dropdown">
+                                        <div class="link-dropdown-header" onclick="toggleLinkCategory('cloud')">
+                                            <span>☁️ Cloud Platforms</span>
+                                            <span class="dropdown-arrow" id="cloud-arrow">▼</span>
+                                        </div>
+                                        <div class="link-dropdown-content" id="cloud-content">
+                                            <ul class="resource-links">
+                                                <li><a href="https://docs.aws.amazon.com/" target="_blank">AWS Documentation</a></li>
+                                                <li><a href="https://learn.microsoft.com/en-us/azure/" target="_blank">Microsoft Azure Learning</a></li>
+                                                <li><a href="https://cloud.google.com/training" target="_blank">Google Cloud Training</a></li>
+                                                <li><a href="https://acloudguru.com/" target="_blank">A Cloud Guru</a></li>
+                                                <li><a href="https://cloudacademy.com/" target="_blank">Cloud Academy</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="link-dropdown">
+                                        <div class="link-dropdown-header" onclick="toggleLinkCategory('devops')">
+                                            <span>⚙️ DevOps & Automation</span>
+                                            <span class="dropdown-arrow" id="devops-arrow">▼</span>
+                                        </div>
+                                        <div class="link-dropdown-content" id="devops-content">
+                                            <ul class="resource-links">
+                                                <li><a href="https://docs.docker.com/" target="_blank">Docker Documentation</a></li>
+                                                <li><a href="https://kubernetes.io/docs/" target="_blank">Kubernetes Docs</a></li>
+                                                <li><a href="https://docs.ansible.com/" target="_blank">Ansible Documentation</a></li>
+                                                <li><a href="https://www.terraform.io/docs" target="_blank">Terraform by HashiCorp</a></li>
+                                                <li><a href="https://jenkins.io/doc/" target="_blank">Jenkins Documentation</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="link-dropdown">
+                                        <div class="link-dropdown-header" onclick="toggleLinkCategory('learning')">
+                                            <span>🎓 Learning Platforms</span>
+                                            <span class="dropdown-arrow" id="learning-arrow">▼</span>
+                                        </div>
+                                        <div class="link-dropdown-content" id="learning-content">
+                                            <ul class="resource-links">
+                                                <li><a href="https://www.cybrary.it/" target="_blank">Cybrary</a></li>
+                                                <li><a href="https://tryhackme.com/" target="_blank">TryHackMe</a></li>
+                                                <li><a href="https://hackthebox.com/" target="_blank">Hack The Box</a></li>
+                                                <li><a href="https://www.pluralsight.com/" target="_blank">Pluralsight</a></li>
+                                                <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="link-dropdown">
+                                        <div class="link-dropdown-header" onclick="toggleLinkCategory('tools')">
+                                            <span>🛡️ Security Tools</span>
+                                            <span class="dropdown-arrow" id="tools-arrow">▼</span>
+                                        </div>
+                                        <div class="link-dropdown-content" id="tools-content">
+                                            <ul class="resource-links">
+                                                <li><a href="https://www.wireshark.org/" target="_blank">Wireshark</a></li>
+                                                <li><a href="https://nmap.org/" target="_blank">Nmap</a></li>
+                                                <li><a href="https://www.metasploit.com/" target="_blank">Metasploit</a></li>
+                                                <li><a href="https://www.kali.org/" target="_blank">Kali Linux</a></li>
+                                                <li><a href="https://suricata.io/" target="_blank">Suricata IDS</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="link-dropdown">
+                                        <div class="link-dropdown-header" onclick="toggleLinkCategory('news')">
+                                            <span>📊 IT News & Trends</span>
+                                            <span class="dropdown-arrow" id="news-arrow">▼</span>
+                                        </div>
+                                        <div class="link-dropdown-content" id="news-content">
+                                            <ul class="resource-links">
+                                                <li><a href="https://threatpost.com/" target="_blank">Threatpost</a></li>
+                                                <li><a href="https://www.bleepingcomputer.com/" target="_blank">BleepingComputer</a></li>
+                                                <li><a href="https://www.techrepublic.com/" target="_blank">TechRepublic</a></li>
+                                                <li><a href="https://www.zdnet.com/" target="_blank">ZDNet</a></li>
+                                                <li><a href="https://arstechnica.com/" target="_blank">Ars Technica</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
