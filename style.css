@@ -92,73 +92,203 @@ main {
 .hero {
     display: flex;
     align-items: center;
-    justify-content: space-around; /* Adjust as needed for spacing */
-    min-height: calc(100vh - 70px); /* Full viewport height minus FIXED header height */
+    justify-content: space-around;
+    min-height: calc(100vh - 70px);
     padding: 20px 100px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('network-lab.jpg'); /* Restored hero background */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('network-lab.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    position: relative; /* For potential pseudo-element overlay if needed, or other positioned children */
-    /* background-color: transparent; Removed, as image will cover */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 123, 255, 0.1), transparent);
+    animation: heroShimmer 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes heroShimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(0, 123, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(0, 170, 255, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 10% 70%, rgba(0, 200, 255, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 90% 30%, rgba(100, 150, 255, 0.1) 0%, transparent 45%);
+    animation: dynamicLighting 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes dynamicLighting {
+    0% { 
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        opacity: 0.7;
+        transform: scale(1.05) rotate(2deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1) rotate(-1deg);
+    }
+    75% {
+        opacity: 0.8;
+        transform: scale(1.03) rotate(1deg);
+    }
+    100% { 
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+    }
 }
 
 .hero-image-container {
-    flex-basis: 40%; /* Adjust as needed */
-    text-align: center; /* Center the image if it's smaller than container */
+    flex-basis: 40%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-image-container img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px; /* Optional: if image should have rounded corners */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+    animation: imageGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes imageGlow {
+    0% { box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3); }
+    100% { box-shadow: 0 15px 40px rgba(0, 170, 255, 0.5); }
+}
+
+.hero-image-container img:hover {
+    transform: scale(1.05);
 }
 
 .hero-text-container {
-    flex-basis: 55%; /* Adjust as needed */
-    padding-left: 30px; /* Space between image and text */
+    flex-basis: 55%;
+    padding-left: 30px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-text-container .intro-text {
     font-size: 1.8em;
-    color: #007bff; /* Blue color for "I am an" */
+    background: linear-gradient(45deg, #007bff, #00aaff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: introGlow 3s ease-in-out infinite;
     margin-bottom: 0;
 }
 
+@keyframes introGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
 .hero-text-container h1 {
-    font-size: 4em; /* Large "Data Analyst" text */
+    font-size: 4em;
     font-weight: bold;
     margin-top: 0;
     margin-bottom: 5px;
-    color: #ffffff;
+    background: linear-gradient(45deg, #ffffff, #00aaff, #ffffff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGradient 4s ease-in-out infinite;
+}
+
+@keyframes titleGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .hero-text-container .name-highlight {
     font-size: 1.5em;
-    color: #007bff; /* Blue color for name */
+    background: linear-gradient(45deg, #007bff, #00ccff, #007bff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: nameShimmer 4s ease-in-out infinite;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
+@keyframes nameShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
 .hero-text-container .description {
-    font-size: 1em;
-    color: #cccccc; /* Lighter gray for description */
+    font-size: 1.1em;
+    color: #f0f0f0;
     margin-bottom: 30px;
-    max-width: 600px; /* Limit width for readability */
+    max-width: 650px;
+    line-height: 1.7;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
 }
 
 .button-cv {
-    background-color: #007bff; /* Blue button */
+    background: linear-gradient(45deg, #007bff, #0056b3);
     color: #ffffff;
-    padding: 12px 25px;
+    padding: 15px 30px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: bold;
-    display: inline-block; /* To allow padding and margin */
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.button-cv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.button-cv:hover::before {
+    left: 100%;
 }
 
 .button-cv:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
 }
 
 .content-section {
@@ -174,21 +304,79 @@ main {
 
 .content-section h2 {
     font-size: 2.5em;
-    color: #007bff; /* Blue for section titles */
+    background: linear-gradient(45deg, #007bff, #00aaff, #00ccff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: sectionTitleGradient 3s ease-in-out infinite;
     margin-bottom: 30px;
     text-align: center;
     border-bottom: 2px solid #0056b3;
-    display: inline-block; /* To make border-bottom only as wide as text */
+    display: inline-block;
     padding-bottom: 10px;
+    position: relative;
+}
+
+@keyframes sectionTitleGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.content-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00aaff, transparent);
+    animation: underlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes underlinePulse {
+    0%, 100% { opacity: 0.5; transform: scaleX(1); }
+    50% { opacity: 1; transform: scaleX(1.1); }
 }
 
 .content-section p, .content-section ul {
-    font-size: 1.1em;
-    color: #cccccc;
-    max-width: 800px;
+    font-size: 1.2em;
+    color: #e0e0e0;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+#about {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 170, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+#about p {
+    background-color: rgba(42, 42, 42, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #444;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
 }
 
 .content-section ul {
@@ -208,17 +396,35 @@ main {
 }
 
 .project-item {
-    background-color: #2a2a2a;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #333333 100%);
+    border-radius: 12px;
     border: 1px solid #444;
-    overflow: hidden; /* Important for containing expanded content */
+    overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    position: relative;
+}
+
+.project-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 123, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.project-item:hover::before {
+    opacity: 1;
 }
 
 .project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 123, 255, 0.2);
 }
 
 .project-tile-content {
@@ -482,22 +688,53 @@ nav { /* The <nav> element itself */
     margin-top: 20px;
 }
 
-.skills-list li { /* Changed selector */
-    display: inline-block; /* Arrange skills in a line, wrapping as needed */
-    background-color: #007bff; /* Bubble background color - using theme blue */
-    color: #ffffff; /* Bubble text color */
-    padding: 8px 15px; /* Adjusted padding */
-    margin: 8px; /* Spacing between bubbles */
-    border-radius: 25px; /* Rounded corners to make it bubble/pill-shaped */
+.skills-list li {
+    display: inline-block;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #ffffff;
+    padding: 8px 15px;
+    margin: 8px;
+    border-radius: 25px;
     font-size: 0.95em;
     font-weight: 500;
-    cursor: pointer; /* Changed to pointer for click interaction */
-    transition: all 0.3s ease-in-out; /* Smooth transition for size change */
-    max-width: 180px; /* Initial max-width for the category */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    max-width: 180px;
     overflow: hidden;
-    vertical-align: top; /* Align bubbles nicely if they wrap */
-    text-align: left; /* Align text left within bubble */
-    white-space: nowrap; /* Keep category on one line initially */
+    vertical-align: top;
+    text-align: left;
+    white-space: nowrap;
+    position: relative;
+    animation: skillFloat 4s ease-in-out infinite;
+}
+
+@keyframes skillFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+.skills-list li:nth-child(odd) {
+    animation-delay: 0.5s;
+}
+
+.skills-list li:nth-child(even) {
+    animation-delay: 1s;
+}
+
+.skills-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.skills-list li:hover::before {
+    left: 100%;
+}
 }
 
 .skill-category {
