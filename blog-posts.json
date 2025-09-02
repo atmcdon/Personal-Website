@@ -1,39 +1,13 @@
 [
   {
-    "id": 10,
-    "title": "Starting Something NewTEST",
-    "author": "Andrew McDonald",
-    "date": "2025-09-02",
-    "featured_image": "blog-images/Featurephoto1.png",
-    "featured_image_alt": null,
-    "excerpt": "This is my first blog post!",
-    "content": "Hey everyone,\n\nThis is my first blog post — kind of wild to finally be doing this. I’ve been wanting a space to share my journey, and now feels like the right time to start. <br>\n<br>\n<pre><code>\nprint(\"Hello, World!\")\n</code></pre>\n\n\n<br>\nSo a little about me: I’m Andrew, and I just kicked off the Information Technology Career Foundation Program (ITCFP) at Boeing. It’s a huge step for me, and honestly I’m both excited and a little nervous. The program is all about rotating through different IT roles, which means I’ll get to try out a bunch of areas, learn a ton, and figure out where I really want to land in this field.\n<br>\n<br>\nI just wrapped up my IT degree at the University of Washington Tacoma, and now I’m heading down a path focused on cybersecurity and cloud computing — with a goal of weaving AI into the mix whenever I can. Those three areas feel like the future of tech, and I want to be right in the middle of it.\n<br>\n\n<br>\nI started this blog because I want a place to document what I’m learning — not just the technical stuff, but also the day-to-day wins, challenges, and lessons along the way. I think it’ll be cool to look back later and see how far I’ve come, and maybe some of my experiences will help someone else starting out in IT too.\n<br>\n<img src='blog-images/IT-security-meme.jpg' alt='IT-security-meme' class='content-image'>\n\n\n<br>\nYou can expect posts about projects I’m working on, random thoughts about tech, and probably a few stories about trying to balance work, school, and family life.\n<br>\n<br>\nThanks for checking this out — I’m looking forward to sharing more soon.",
-    "tags": [
-      "IT"
-    ]
-  },
-  {
-    "id": 11,
-    "title": "Ter",
-    "author": "Andrew McDonald",
-    "date": "2025-09-02",
-    "featured_image": null,
-    "featured_image_alt": null,
-    "excerpt": "sd",
-    "content": "<h2>Your Heading Here</h2>\n<p>Add your content here...</p>",
-    "tags": [
-      "sd"
-    ]
-  },
-  {
-    "id": 12,
+    "id": 1,
     "title": "Starting Something New",
     "author": "Andrew McDonald",
     "date": "2025-09-02",
     "featured_image": "blog-images/Featurephoto1.png",
     "featured_image_alt": null,
     "excerpt": "This is my first blog post!",
-    "content": "Hey everyone,\n\nThis is my first blog post — kind of wild to finally be doing this. I’ve been wanting a space to share my journey, and now feels like the right time to start. <br>\n<br>\n<pre><code>\nprint(\"Hello, World!\")\n</code></pre>\n\n\n<br>\nSo a little about me: I’m Andrew, and I just kicked off the Information Technology Career Foundation Program (ITCFP) at Boeing. It’s a huge step for me, and honestly I’m both excited and a little nervous. The program is all about rotating through different IT roles, which means I’ll get to try out a bunch of areas, learn a ton, and figure out where I really want to land in this field.\n<br>\n<br>\nI just wrapped up my IT degree at the University of Washington Tacoma, and now I’m heading down a path focused on cybersecurity and cloud computing — with a goal of weaving AI into the mix whenever I can. Those three areas feel like the future of tech, and I want to be right in the middle of it.\n<br>\n\n<br>\nI started this blog because I want a place to document what I’m learning — not just the technical stuff, but also the day-to-day wins, challenges, and lessons along the way. I think it’ll be cool to look back later and see how far I’ve come, and maybe some of my experiences will help someone else starting out in IT too.\n<br>\n<img src='blog-images/IT-security-meme.jpg' alt='IT-security-meme' class='content-image'>\n\n\n<br>\nYou can expect posts about projects I’m working on, random thoughts about tech, and probably a few stories about trying to balance work, school, and family life.\n<br>\n<br>\nThanks for checking this out — I’m looking forward to sharing more soon.",
+    "content": "Hey everyone,\n\nThis is my first blog post — kind of wild to finally be doing this. I've been wanting a space to share my journey, and now feels like the right time to start. <br>\n<br>\n<pre><code>\nprint(\"Hello, World!\")\n</code></pre>\n\n\n<br>\nSo a little about me: I'm Andrew, and I just kicked off the Information Technology Career Foundation Program (ITCFP) at Boeing. It's a huge step for me, and honestly I'm both excited and a little nervous. The program is all about rotating through different IT roles, which means I'll get to try out a bunch of areas, learn a ton, and figure out where I really want to land in this field.\n<br>\n<br>\nI just wrapped up my IT degree at the University of Washington Tacoma, and now I'm heading down a path focused on cybersecurity and cloud computing — with a goal of weaving AI into the mix whenever I can. Those three areas feel like the future of tech, and I want to be right in the middle of it.\n<br>\n\n<br>\nI started this blog because I want a place to document what I'm learning — not just the technical stuff, but also the day-to-day wins, challenges, and lessons along the way. I think it'll be cool to look back later and see how far I've come, and maybe some of my experiences will help someone else starting out in IT too.\n<br>\n<img src='blog-images/IT-security-meme.jpg' alt='IT-security-meme' class='content-image'>\n\n\n<br>\nYou can expect posts about projects I'm working on, random thoughts about tech, and probably a few stories about trying to balance work, school, and family life.\n<br>\n<br>\nThanks for checking this out — I'm looking forward to sharing more soon.",
     "tags": [
       "IT"
     ]
