@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Creator | Andrew McDonald</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #444;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #00aaff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #cccccc;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 300px;
+            font-family: inherit;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .editor-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 6px;
+            border: 1px solid #555;
+        }
+        
+        .editor-toolbar button {
+            background-color: #444;
+            color: #cccccc;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .editor-toolbar button:hover {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        
+        .tags-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tag-item {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tag-remove {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .draft-management {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            border: 1px solid #444;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn.success {
+            background-color: #28a745;
+        }
+        
+        .btn.success:hover {
+            background-color: #218838;
+        }
+        
+        .btn.danger {
+            background-color: #dc3545;
+        }
+        
+        .btn.danger:hover {
+            background-color: #c82333;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .status-message {
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-success {
+            background-color: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            color: #28a745;
+        }
+        
+        .status-error {
+            background-color: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+        }
+        
+        .image-preview {
+            margin-top: 10px;
+        }
+        
+        .image-preview img {
+            max-width: 200px;
+            max-height: 150px;
+            border-radius: 6px;
+            border: 1px solid #555;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .publish-options {
+            margin-top: 20px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #cccccc;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/blog.html" class="back-link">&larr; Back to Blog</a>
+        
+        <h1>🚀 Blog Creator Server</h1>
+        
+        <div class="draft-management">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="draft-select">Load Draft</label>
+                    <select id="draft-select">
+                        <option value="">-- Select a draft --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="draft-name">Save Current as Draft</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="draft-name" placeholder="Draft name...">
+                        <button type="button" onclick="saveDraft()" class="btn">💾 Save</button>
+                        <button type="button" onclick="deleteDraft()" class="btn danger">🗑️ Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <form id="blog-post-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="post-title">Post Title</label>
+                    <input type="text" id="post-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-author">Author</label>
+                    <input type="text" id="post-author" value="Andrew McDonald" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="post-date">Date</label>
+                    <input type="date" id="post-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="featured-image">Featured Image</label>
+                    <div style="display: flex; gap: 10px; align-items: end;">
+                        <input type="text" id="featured-image" placeholder="blog-images/example.jpg" style="flex: 1;">
+                        <input type="file" id="featured-image-upload" accept="image/*" style="display: none;" onchange="uploadFeaturedImage(this)">
+                        <button type="button" onclick="document.getElementById('featured-image-upload').click()" class="btn success">📁 Upload</button>
+                    </div>
+                    <div id="featured-image-preview" class="image-preview"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="featured-image-alt">Featured Image Alt Text</label>
+                <input type="text" id="featured-image-alt" placeholder="Description of the image">
+            </div>
+            
+            <div class="form-group">
+                <label for="post-excerpt">Excerpt</label>
+                <textarea id="post-excerpt" placeholder="Brief summary of the blog post..." rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="post-content">Content</label>
+                <div class="editor-toolbar">
+                    <button type="button" onclick="insertCode()" title="Insert Code Block">📝 Code</button>
+                    <button type="button" onclick="insertImageInContent()" title="Insert Image">🖼️ Image</button>
+                    <button type="button" onclick="insertHeading()" title="Insert Heading">📰 H2</button>
+                    <button type="button" onclick="insertHeading3()" title="Insert Subheading">📖 H3</button>
+                    <button type="button" onclick="insertList()" title="Insert List">📋 List</button>
+                </div>
+                <textarea id="post-content" placeholder="Write your blog post content here. Use the toolbar buttons to add code blocks, images, and formatting..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="tag-input">Tags</label>
+                <input type="text" id="tag-input" placeholder="Type a tag and press Enter">
+                <div class="tags-input" id="tags-container"></div>
+            </div>
+            
+            <div class="publish-options">
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="auto-push" checked>
+                        <span class="checkmark"></span>
+                        Auto-push to GitHub after publishing
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn" id="submit-btn">🚀 Publish Blog Post</button>
+            </div>
+        </form>
+        
+        <div id="status-message"></div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+services:
+  blog-creator:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - "../..:/app/website"  # Mount your website directory
+      - "./public:/app/public"
+      - "~/.ssh:/root/.ssh:ro"  # Mount SSH keys (read-only)
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - GIT_USER_NAME=${GIT_USER_NAME:-Andrew McDonald}
+      - GIT_USER_EMAIL=${GIT_USER_EMAIL:-atmcdon@hotmail.com}
+    restart: unless-stopped
+    container_name: blog-creator-server
