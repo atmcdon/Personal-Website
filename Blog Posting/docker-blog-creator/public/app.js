@@ -377,6 +377,56 @@ function showStatus(message, type) {
     }
 }
 
+// Preview post functionality
+function previewPost() {
+    const formData = {
+        title: document.getElementById('post-title').value.trim(),
+        author: document.getElementById('post-author').value.trim(),
+        date: document.getElementById('post-date').value,
+        featured_image: document.getElementById('featured-image').value.trim(),
+        featured_image_alt: document.getElementById('featured-image-alt').value.trim(),
+        excerpt: document.getElementById('post-excerpt').value.trim(),
+        content: document.getElementById('post-content').value.trim(),
+        tags: currentTags
+    };
+    
+    // Validate required fields
+    if (!formData.title || !formData.author || !formData.date || !formData.excerpt || !formData.content) {
+        showStatus('Please fill in all required fields to preview', 'error');
+        return;
+    }
+    
+    if (currentTags.length === 0) {
+        showStatus('Please add at least one tag to preview', 'error');
+        return;
+    }
+    
+    // Show preview section
+    const previewSection = document.getElementById('preview-section');
+    const previewContent = document.getElementById('preview-content');
+    
+    const previewHTML = `
+        <div style="background: #fff; color: #333; padding: 20px; border-radius: 8px;">
+            <h1 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-top: 0;">${formData.title}</h1>
+            <div style="color: #666; margin-bottom: 20px; font-size: 0.9em;">
+                By ${formData.author} | ${new Date(formData.date).toLocaleDateString()}
+            </div>
+            ${formData.featured_image ? `<img src="${formData.featured_image}" alt="${formData.featured_image_alt || 'Featured image'}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0;">` : ''}
+            <p style="font-weight: bold;">${formData.excerpt}</p>
+            <div style="margin: 20px 0;">
+                ${formData.tags.map(tag => `<span style="background: #007bff; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 5px;">${tag}</span>`).join('')}
+            </div>
+            <div style="line-height: 1.6;">${formData.content}</div>
+        </div>
+    `;
+    
+    previewContent.innerHTML = previewHTML;
+    previewSection.style.display = 'block';
+    
+    // Scroll to preview
+    previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // Make functions global
 window.removeTag = removeTag;
 window.uploadFeaturedImage = uploadFeaturedImage;
@@ -388,3 +438,4 @@ window.insertList = insertList;
 window.saveDraft = saveDraft;
 window.loadDraft = loadDraft;
 window.deleteDraft = deleteDraft;
+window.previewPost = previewPost;

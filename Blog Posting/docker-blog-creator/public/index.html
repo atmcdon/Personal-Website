@@ -353,11 +353,19 @@
                         Auto-push to GitHub after publishing
                     </label>
                 </div>
-                <button type="submit" class="submit-btn" id="submit-btn">🚀 Publish Blog Post</button>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" onclick="previewPost()" class="btn" style="flex: 1;">👁️ Preview Post</button>
+                    <button type="submit" class="submit-btn" id="submit-btn" style="flex: 2;">🚀 Publish Blog Post</button>
+                </div>
             </div>
         </form>
         
         <div id="status-message"></div>
+        
+        <div id="preview-section" style="display: none; margin-top: 30px; padding: 20px; background-color: #2a2a2a; border-radius: 8px; border: 1px solid #444;">
+            <h2 style="color: #00aaff; margin-top: 0;">📖 Post Preview</h2>
+            <div id="preview-content"></div>
+        </div>
     </div>
     
     <script src="app.js"></script>
